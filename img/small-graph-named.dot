@@ -1,0 +1,68 @@
+digraph {
+	layout=dot
+	bgcolor=black
+	fontcolor=white
+	color=white
+
+	Func_STable [
+		shape=rect
+		style=filled
+		fillcolor=lightgreen
+		color=white
+		label="AES S_table"
+	]
+
+	Func_substitution_S [
+		shape=rect
+		style=filled
+		fillcolor=lightgreen
+		color=white
+		label="AES substitution_S"
+	]
+	Func_substitution_S -> Func_STable [color=white];
+	Func_substitution_S -> Func_STable [color=white];
+
+	Func_calc_s_table_based_values [
+		shape=rect
+		style=filled
+		fillcolor=lightgreen
+		color=white
+		label="AES calc_s_table_based_values"
+	]
+	Func_calc_s_table_based_values -> Func_STable [color=white];
+
+	Func_encrypt [
+		shape=rect
+		style=filled
+		fillcolor=lightgreen
+		color=white
+		label="AES encrypt"
+	]
+	Func_encrypt -> Func_substitution_S [color=white];
+	Func_encrypt -> Func_enc_key_schedule [color=white];
+
+	Func_enc_key_schedule [
+		shape=rect
+		style=filled
+		fillcolor=lightgreen
+		color=white
+		label="AES enc_key_schedule"
+	]
+	Func_enc_key_schedule -> Func_calc_s_table_based_values [color=white];
+
+	Func_init_decryption_key [
+		shape=rect
+		style=filled
+		fillcolor=lightgreen
+		color=white
+		label="AES init_decryption_key"
+	]
+	Func_init_decryption_key -> Func_enc_key_schedule [color=white];
+
+	Block_main [
+		shape=plaintext
+		label="..."
+		fontcolor=white
+	]
+	Block_main -> Func_encrypt [color=white];
+}

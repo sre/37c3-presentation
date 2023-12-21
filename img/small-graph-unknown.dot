@@ -1,0 +1,73 @@
+digraph {
+	layout=dot
+	bgcolor=black
+	fontcolor=white
+	color=white
+
+	Func_STable [
+		shape=rect
+		style=filled
+		fillcolor=lightgreen
+		color=white
+		label="AES S-Box"
+	]
+
+	Func_1 [
+		shape=rect
+		style=filled
+		fillcolor=black
+		fontcolor=white
+		color=white
+		label="AES Func 1 (371 instructions)"
+	]
+	Func_1 -> Func_STable [color=white];
+	Func_1 -> Func_STable [color=white];
+
+	Func_2 [
+		shape=rect
+		style=filled
+		fillcolor=black
+		fontcolor=white
+		color=white
+		label="AES Func 2 (106 instructions)"
+	]
+	Func_2 -> Func_STable [color=white];
+
+	Func_3 [
+		shape=rect
+		style=filled
+		fillcolor=black
+		fontcolor=white
+		color=white
+		label="AES Func 3 (24 instructions)"
+	]
+	Func_3 -> Func_1 [color=white];
+	Func_3 -> Func_4 [color=white];
+
+	Func_4 [
+		shape=rect
+		style=filled
+		fillcolor=black
+		color=white
+		fontcolor=white
+		label="AES Func 4 (36 instructions)"
+	]
+	Func_4 -> Func_2 [color=white];
+
+	Func_5 [
+		shape=rect
+		style=filled
+		fillcolor=black
+		color=white
+		fontcolor=white
+		label="AES Func 5 (10 instructions)"
+	]
+	Func_5 -> Func_4 [color=white];
+
+	Block_main [
+		shape=plaintext
+		label="..."
+		fontcolor=white
+	]
+	Block_main -> Func_3 [color=white];
+}
